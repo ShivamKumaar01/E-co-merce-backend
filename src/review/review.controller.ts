@@ -5,7 +5,7 @@ import { UpdateReviewDto } from './dto/update-review.dto';
 
 @Controller('review')
 export class ReviewController {
-  constructor(private readonly reviewService: ReviewService) {}
+  constructor(private readonly reviewService: ReviewService) { }
 
   @Post()
   create(@Body() createReviewDto: CreateReviewDto) {
@@ -15,6 +15,11 @@ export class ReviewController {
   @Get()
   findAll() {
     return this.reviewService.findAll();
+  }
+
+  @Get('products-by-rating')
+  getProductsSortedByRating() {
+    return this.reviewService.getProductsSortedByRating();
   }
 
   @Get(':id')
