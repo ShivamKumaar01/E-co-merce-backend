@@ -1,4 +1,3 @@
-
 import {
   IsArray,
   IsNotEmpty,
@@ -23,7 +22,7 @@ export class CreateProductDto {
   description?: string;
 
   @IsArray()
-  @IsNumber({}, { each: true }) 
+  @IsNumber({}, { each: true })
   categoryIds: number[];
 }
 

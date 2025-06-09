@@ -1,4 +1,4 @@
-// create-order-item.dto.ts
+
 import { IsInt, Min, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateOrderItemDto {
