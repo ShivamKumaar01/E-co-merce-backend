@@ -3,13 +3,13 @@ import { User } from "src/user/entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()
-@Unique(['user', 'product']) // 🛑 Prevent duplicate reviews by same user on same product
+@Unique(['user', 'product']) 
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: 'int' })
-  rating: number; // between 1-5
+  rating: number; 
 
   @Column({ nullable: true })
   comment: string;

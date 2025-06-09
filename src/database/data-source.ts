@@ -24,5 +24,5 @@ export const AppDataSource = new DataSource({
   logging: true,
   entities: [User, Address, Category, Order, OrderItem, Product, Review],
   migrations: [isCompiled ? 'dist/database/migrations/*.js' : 'src/database/migrations/*.ts'],
-  // seeds: [isCompiled ? 'dist/database/seeders/**/*.js' : 'src/database/seeders/**/*.ts'],
+  
 });

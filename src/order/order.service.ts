@@ -16,8 +16,6 @@ export class OrderService {
   async create(createOrderDto: CreateOrderDto) {
     const order = new Order();
     order.user = { id: createOrderDto.userId } as User;
-
-    // Prepare items array
     const orderItems: OrderItem[] = [];
 
     for (const item of createOrderDto.items) {
@@ -36,8 +34,6 @@ export class OrderService {
     }
 
     order.items = orderItems;
-
-    // Save order with items (thanks to cascade: true)
     const savedOrder = await this.orderRepository.save(order);
 
     return savedOrder;

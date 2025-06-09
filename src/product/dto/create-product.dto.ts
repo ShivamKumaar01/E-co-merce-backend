@@ -1,4 +1,4 @@
-// create-product.dto.ts
+
 import {
   IsArray,
   IsNotEmpty,
@@ -23,7 +23,7 @@ export class CreateProductDto {
   description?: string;
 
   @IsArray()
-  @IsNumber({}, { each: true }) // array of numbers (category IDs)
+  @IsNumber({}, { each: true }) 
   categoryIds: number[];
 }
 

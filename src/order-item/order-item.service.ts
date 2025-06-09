@@ -35,7 +35,6 @@ export class OrderItemService {
     await queryRunner.startTransaction();
 
     try {
-      
       const product = await queryRunner.manager.findOne(Product, {
         where: { id: dto.productId },
       });
@@ -43,17 +42,11 @@ export class OrderItemService {
       if (!product) {
         throw new NotFoundException('Product not found');
       }
-
-    
       if (product.quantity < dto.quantity) {
         throw new BadRequestException(`Only ${product.quantity} items left in stock`);
       }
-
-  
-      product.quantity -= dto.quantity;
+      product.quantity =product.quantity-dto.quantity;
       await queryRunner.manager.save(product);
-
-      
       const orderItem = new OrderItem();
       orderItem.quantity = dto.quantity;
       orderItem.price = dto.price;
@@ -61,8 +54,6 @@ export class OrderItemService {
       orderItem.order = { id: dto.orderId } as any;
 
       await queryRunner.manager.save(orderItem);
-
-     
       await queryRunner.commitTransaction();
       return orderItem;
 

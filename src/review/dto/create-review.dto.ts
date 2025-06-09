@@ -1,4 +1,3 @@
-// create-review.dto.ts
 import {
   IsInt,
   Min,
@@ -20,6 +19,6 @@ export class CreateReviewDto {
   productId: number;
 
   @IsNotEmpty()
-  userId: number; // Optional if you're getting from JWT
+  userId: number; 
 }
 
