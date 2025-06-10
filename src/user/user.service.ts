@@ -4,11 +4,14 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { MailerService } from 'src/mailer/mailer.service';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    private readonly mailerService:MailerService
+
 
   ) { }
   create(createUserDto: CreateUserDto) {
@@ -18,7 +21,9 @@ export class UserService {
     user.password = createUserDto.password
     user.gender = createUserDto.gender
     user.age = createUserDto.age
-    return this.userRepository.save(user)
+    this.userRepository.save(user)
+    this.mailerService.sendWelcomeEmail(user.email,user.name)
+    return {message:"email send successfully and user added "}
   }
 
   async findAll(page: number, limit: number, search?: string) {
